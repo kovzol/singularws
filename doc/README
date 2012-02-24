@@ -1,0 +1,21 @@
+SingularWS
+----------
+
+This simple webservice is created for mathematics software that requires
+outsourced computations mainly in ideal theory and commutative algebra.
+
+To install it, you need an Apache server with PHP enabled, and Singular
+must also be installed and available on the command path. The most
+convenient way is to set up a Debian/Ubuntu server and install
+the following pieces of software:
+
+* libapache2-mod-php5
+* singular
+
+Then copy all files into /var/www as root and chmod 1777 /var/www/cache.
+
+This software is intended to run on a standalone machine, preferably
+on a virtual host.
+
+Author: Zoltan Kovacs <zoltan@geogebra.org>
+License: GPL3
