@@ -51,7 +51,12 @@ http://geogebra2.idm.jku.at. After downloading it (that is a zipped .vdi
 file), please start VirtualBox and load the appliance file, then start
 the virtual machine. You can learn more on this here:
 http://hacktolive.org/wiki/Using_VirtualBox_images_(.vdi_files) --- for
-OS you could select Ubuntu.
+OS you could select Linux, Ubuntu (64 bit), the suggested memory is at
+least 1 GB (for the very start 512 MB is also enough). Before starting
+the machine it is important to change the network settings. You may
+certainly want to enable the network interface to a bridged card to make
+it possible for other machines to reach SingularWS from your local
+network (intranet).
 
 It is suggested to change the password for the singularws user (password
 is the same as the username) when logging in at the first time. Remote
@@ -61,8 +66,9 @@ example.
 
 It is crucial to find out the IP address of your freshly started virtual
 machine. After logging in, this can be achieved by running the
-"ifconfig" command. Then you can point your browser to the IP of the
-virtual machine, e.g.:
+"ifconfig" command. (Another possibility is to check the network traffic
+log on your router, if it is capable of this.) Then you can point your
+browser to the IP of the virtual machine, e.g.:
 
 http://192.168.1.102
 
