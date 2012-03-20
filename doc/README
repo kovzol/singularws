@@ -1,8 +1,11 @@
 SingularWS
-----------
+==========
+
+1. About
+--------
 
 This simple webservice is created for mathematics software that requires
-outsourced computations mainly in ideal theory and commutative algebra.
+outsourced computations, mainly in ideal theory and commutative algebra.
 
 To install it, you need an Apache server with PHP enabled, and Singular
 must also be installed and available on the command path. The most
@@ -19,3 +22,125 @@ on a virtual host.
 
 Author: Zoltan Kovacs <zoltan@geogebra.org>
 License: GPL3
+
+
+2. Hints for production use
+---------------------------
+
+Since requests can be the same for different uses in many situations
+(e.g. classroom use with several users, repeatition of a set of
+problems), it is considerable to use a caching mechanism in front of the
+web server. There are several ways to solve this, e.g. the mod_cache and
+mod_disk_cache modules in Apache, or the Varnish accelerator. Due to its
+stability, we recommend to use Varnish with the following settings:
+
+* Change the Apache port from 80 to 8080 everywhere in its config files
+  under the /etc/apache2 directory.
+* Configure Varnish to listen on port 80 in /etc/default/varnish.
+* Configure Varnish to use 127.0.0.1:8080 for the backend host in
+  the /etc/varnish/default.vcl file.
+* Restart the Apache and the Varnish services.
+
+2.1. Downloading a virtual machine
+----------------------------------
+
+Many people just want to use SingularWS, but not to play with the
+installation and configuration details. To ease their life, the GeoGebra
+Team provides a VirtualBox virtual appliance to download at
+http://geogebra2.idm.jku.at. After downloading it, please start a
+VirtualBox and load the appliance file, then start the virtual machine.
+
+It is suggested to change the password for the singularws user (password
+is the same as the username) when logging in at the first time. Remote
+SSH login is also available. An experienced system administrator may
+want to add extra safety by setting up a sophisticated firewall, for
+example.
+
+A demo virtual server can (hopefully) always be available at the
+following URL:
+
+http://geogebra2.idm.jku.at:8085
+
+Such a request should return the "e1" output (which means error code 1:
+no command defined or no such command).
+
+
+3. Using SingularWS
+-------------------
+
+SingularWS can be used via its application programming interface (API)
+which is defined in inc/commands.php. Basically, the most typical use
+is to send the calculation request via an HTTP URL by setting the GET
+parameters as needed.
+
+Here are some simple examples:
+
+* http://geogebra2.idm.jku.at:8085/?c=t
+* http://geogebra2.idm.jku.at:8085/?c=s&p=12345*54321;
+* http://geogebra2.idm.jku.at:8085/?c=s&p=123-45;67%2B8;
+* http://geogebra2.idm.jku.at:8085/?c=s&p=ring%20r=0,(x,y),dp;ideal%20I=x^2,x;groebner(I)
+
+The first example is a simple connection test, it should return "ok".
+The second one simply multiplies two numbers---note the semicolon at the
+end to ensure a nice output ("670592745 >", here the "greater than" sign
+is the Singular prompt). The third one is a substraction and an
+addition---note that "%2B" must be used instead of "+" (since "+" is
+always converted to a space character). If you plan to use SingularWS
+from a computer program you write, consider using an URL encoder
+subroutine (e.g. urlencode in PHP, encodeURL in Java or quote_plus
+in Python's urllib).
+
+The fourth example shows the programming capabilities of Singular. It
+calculates the Groebner basis of an ideal which consists of the
+polynomials x^2 and x. The calculation is done in R[x,y], and the
+ordering is "dp" which stands for the reversed graudated lexicographical
+ordering. For more details please consult the Singular documentation.
+
+By default, calculation limit is set to the timeout of 30 seconds.
+This can be fine tuned in inc/conf.php.
+
+Since SingularWS can only work with GET requests currently, a length
+limit for the command can be expected. E.g. Internet Explorer users will
+be unable to send Singular program codes longer than about 2000 bytes.
+
+3.1. The SingularWS API
+-----------------------
+
+In the present state of SingularWS just a very limited set of commands
+are available, namely:
+
+* c=t (command: connection test)
+* c=s (command: Singular direct call) p=...
+
+In the future some other commands may be added.
+
+3.2 Example use in GeoGebra
+---------------------------
+
+At the moment this is in very experimental state, but one can find the
+current source code at
+http://dev.geogebra.org/trac/browser/trunk/geogebra/common/src/geogebra/common/cas/singularws/SingularWebService.java.
+
+
+4. Official webpage and news
+----------------------------
+
+Please check http://geogebra2.idm.jku.at for the newest version of this
+software.
+
+
+5. Acknowledgements
+-------------------
+
+Creating SingularWS was motivated by Francisco Botana and his automated
+theorem proving subsytem, written for Sage and GeoGebra. He himself did
+some testing on SingularWS.
+
+The author of this package thanks for the support of The GeoGebra Team,
+lead by Markus Hohenwarter. The testing and web site architecture is
+also supported by the Department of Mathematics Education, Johannes
+Kepler University, Linz, Austria.
+
+The automated theorem proving project for GeoGebra is advised by Tomas
+Recio. His and Botana's work was partially supported by grants
+MTM2008-M04699-C03-03 and MTM2011-25816-C02-02.
