@@ -92,9 +92,13 @@ in Python's urllib).
 
 The fourth example shows the programming capabilities of Singular. It
 calculates the Groebner basis of an ideal which consists of the
-polynomials x^2 and x. The calculation is done in R[x,y], and the
-ordering is "dp" which stands for the reversed graudated lexicographical
-ordering. For more details please consult the Singular documentation.
+polynomials x^2 and x. (In any URL the space character can also be used,
+but after serving the request, the web browser usually converts all
+spaces into "%20" strings. Here in the example we used "%20" as an
+input, too, for emphasizing that the URL is one text, not two ones.) The
+calculation is done in R[x,y], and the ordering is "dp" which stands for
+the reversed graduated lexicographical ordering. For more details please
+consult the Singular documentation.
 
 By default, calculation limit is set to the timeout of 30 seconds.
 This can be fine tuned in inc/conf.php.
