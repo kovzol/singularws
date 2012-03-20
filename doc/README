@@ -47,8 +47,11 @@ stability, we recommend to use Varnish with the following settings:
 Many people just want to use SingularWS, but not to play with the
 installation and configuration details. To ease their life, the GeoGebra
 Team provides a VirtualBox virtual appliance to download at
-http://geogebra2.idm.jku.at. After downloading it, please start a
-VirtualBox and load the appliance file, then start the virtual machine.
+http://geogebra2.idm.jku.at. After downloading it (that is a zipped .vdi
+file), please start VirtualBox and load the appliance file, then start
+the virtual machine. You can learn more on this here:
+http://hacktolive.org/wiki/Using_VirtualBox_images_(.vdi_files) --- for
+OS you could select Ubuntu.
 
 It is suggested to change the password for the singularws user (password
 is the same as the username) when logging in at the first time. Remote
@@ -56,13 +59,29 @@ SSH login is also available. An experienced system administrator may
 want to add extra safety by setting up a sophisticated firewall, for
 example.
 
+It is crucial to find out the IP address of your freshly started virtual
+machine. After logging in, this can be achieved by running the
+"ifconfig" command. Then you can point your browser to the IP of the
+virtual machine, e.g.:
+
+http://192.168.1.102
+
+Such a request should return the "e1" output (which means error code 1:
+no command defined or no such command).
+
+Please note that the virtual machine will be automatically set to obtain
+a DHCP address from the same network as the host machine obtains its own
+IP address from. To change or fine tune this behavior please consult the
+VirtualBox documentation, the handbook of your router, and/or your
+network administrator.
+
 A demo virtual server can (hopefully) always be available at the
 following URL:
 
 http://geogebra2.idm.jku.at:8085
 
-Such a request should return the "e1" output (which means error code 1:
-no command defined or no such command).
+(Here 8085 is a special port we use at GeoGebra. For your virtual machine
+it must not be entered, since the default port 80 will be used.)
 
 
 3. Using SingularWS
