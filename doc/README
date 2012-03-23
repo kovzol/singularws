@@ -103,7 +103,7 @@ Here are some simple examples:
 * http://geogebra2.idm.jku.at:8085/?c=t
 * http://geogebra2.idm.jku.at:8085/?c=s&p=12345*54321;
 * http://geogebra2.idm.jku.at:8085/?c=s&p=123-45;67%2B8;
-* http://geogebra2.idm.jku.at:8085/?c=s&p=ring%20r=0,(x,y),dp;ideal%20I=x^2,x;groebner(I)
+* http://geogebra2.idm.jku.at:8085/?c=s&p=ring%20r=0,(x,y),dp;ideal%20I=x^2,x;groebner(I);
 
 The first example is a simple connection test, it should return "ok".
 The second one simply multiplies two numbers---note the semicolon at the
