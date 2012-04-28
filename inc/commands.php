@@ -1,6 +1,7 @@
 <?php
 
 include_once("conf.php");
+include_once("base.php");
 
 global $commands;
 
@@ -18,8 +19,10 @@ function test() {
 # Direct Singular call.
 # Example: http://$IP/?c=s&123-56;
 function singular_direct() {
- global $_GET, $TIMEOUT;
+ global $_GET, $_POST, $TIMEOUT;
  $problem=$_GET['p'];
+ if (!$problem)
+  $problem=$_POST['p'];
  $dirname=time().rand(10000000,99999999); // FIXME: for being collision-safe
  mkdir("cache/$dirname");
  $f=fopen("cache/$dirname/input","w");
