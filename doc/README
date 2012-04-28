@@ -40,6 +40,9 @@ stability, we recommend to use Varnish with the following settings:
 * Configure Varnish to use 127.0.0.1:8080 for the backend host in
   the /etc/varnish/default.vcl file.
 * Restart the Apache and the Varnish services.
+* To test Varnish based caching, enter "varnishlog" on the command line,
+  and send some test requests, then check the output on the console.
+  You can any time stop this type of logging.
 
 2.1. Downloading a virtual machine
 ----------------------------------
@@ -130,9 +133,14 @@ This can be fine tuned in inc/conf.php.
 
 SingularWS can also work with POST requests: this is recommended for
 sending bigger computations. For GET requests, a length limit for the
-command can be expected. E.g. Internet Explorer users will be unable to
-send Singular program codes longer than about 2000 bytes embedded in the
-URL, but other browsers will also stop working yet below 10000 bytes.
+command should be expected on both client and server sides. E.g.
+Internet Explorer users will be unable to send Singular program codes
+longer than about 2000 bytes embedded in the URL, but other browsers
+will also stop working yet below 10000 bytes. On the other hand, the
+default Apache configuration for the LimitRequestFields and
+LimitRequestFieldsize directives are set to 8190 during compilation
+time. This means Apache also has to be recompiled with an increased
+setting for long GET requests.
 
 3.1. The SingularWS API
 -----------------------
