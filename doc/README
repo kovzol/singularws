@@ -92,6 +92,70 @@ http://geogebra2.idm.jku.at:8085
 (Here 8085 is a special port we use at GeoGebra. For your virtual machine
 it must not be entered, since the default port 80 will be used.)
 
+2.2. Creating a virtual machine
+-------------------------------
+
+We assume that you use a modern Linux workstation for your work.
+
+a) Download Ubuntu Server from http://www.ubuntu.com/download/server
+   in an ISO file. The 64 bit version will be fine.
+
+b) Install and run VirtualBox.
+
+c) Click New -> Next. Fill in the form: Name: SingularWS, OS Type:
+   Linux, Ubuntu (64 bit). Set the base memory size to 1024 MB.
+
+d) Set up a VDI type virtual disk with dynamically allocated size,
+   2000 MB should be enough.
+
+e) Start the machine, and select the Ubuntu Server 64 bit ISO file
+   for installation media. Install Ubuntu by using the default
+   settings everywhere, except for host and user names and
+   passwords (everywhere "singularws"), and that for partitioning
+   "Manual" should be used (enabling the whole space to a single
+   partition into /dev/sda1, no swap space is needed), and the
+   OpenSSH server will be installed as a basic service.
+
+f) After the first reboot, log in and ask the IP address of the machine
+   by running "ifconfig". Then add a new port forwarding rules to VirtualBox
+   in the Network section:
+
+   - protocol TCP host 127.0.0.1 port 2222 to guest 10.0.2.15 port 22
+   - protocol TCP host 127.0.0.1 port 8080 to guest 10.0.2.15 port 80
+
+   (Here you must change 10.0.2.15 to your IP address of the new machine.)
+
+g) Log in to the new machine from your workstation by doing the following:
+
+   $ ssh -p2222 singularws@10.0.2.15
+
+   After successful login:
+
+   $ sudo su
+
+   Here type the password (singularws), and then:
+
+   # apt-get install libapache2-mod-php5 git varnish
+
+   Now follow the steps at http://www.singular.uni-kl.de/index.php/singular-download/110.html
+   (just copy-paste the commands).
+
+   Then:
+
+   # cd /var
+   # git clone https://code.google.com/p/singularws/
+   # mv www www.orig
+   # ln -s singularws/ www
+   # cd www
+   # mkdir cache
+   # chmod 1777 cache
+
+h) Now you can try if SingularWS is working properly by using the following links:
+
+   http://127.0.0.1:8080
+   http://127.0.0.1:8080/?c=s&p=12345*54321;
+
+i) Set up Varnish.
 
 3. Using SingularWS
 -------------------
