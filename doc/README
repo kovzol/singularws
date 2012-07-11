@@ -181,7 +181,7 @@ k) Updating Linux packages, and cleaning:
    # cd /tmp; find . -maxdepth 1 | xargs rm -fR
    # rm /etc/udev/rules.d/70-persistent-net.rules
    # rm /home/singularws/*Singular*
-   # cd /var/log; find . -maxdepth 1 | xargs rm -fR
+   # cd /var/log; find . -maxdepth 1 -not -name apache2 | xargs rm -fR
    # rm ~/.bash_history; exit
    $ rm ~/.bash_history; exit
 
