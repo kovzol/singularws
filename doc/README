@@ -129,7 +129,7 @@ g) Log in to the new machine from your workstation by doing the following:
 
    $ ssh -p2222 singularws@10.0.2.15
 
-   After successful login:
+   After a successful login:
 
    $ sudo su
 
@@ -165,6 +165,40 @@ i) Set up Varnish (optional):
    # service apache2 restart
 
    Retry step h) to check if everything works properly.
+
+j) Ensure that the cache will be deleted regularly by starting "crontab -e",
+   and adding the following line (first you may have to choose an editor):
+
+     0 7 * * * cd /var/www/cache; find . -ctime +3 -maxdepth 1 | xargs rm -fR
+
+   and save the file.
+
+k) Updating Linux packages, and cleaning:
+
+   # apt-get update; apt-get upgrade
+   # apt-get autoremove; apt-get clean
+   # cd /var/www/cache; find /var/www/cache -maxdepth 1 | xargs rm -fR
+   # cd /tmp; find . -maxdepth 1 | xargs rm -fR
+   # rm /etc/udev/rules.d/70-persistent-net.rules
+   # rm /home/singularws/*Singular*
+   # cd /var/log; find . -maxdepth 1 | xargs rm -fR
+   # rm ~/.bash_history; exit
+   $ rm ~/.bash_history; exit
+
+l) Now switch off the SingularWS virtual appliance (also possible via command
+   line in your workstation by entering "VBoxManage controlvm SingularWS poweroff").
+
+m) The .vdi file for the appliance will be put into
+
+   /$HOME/VirtualBox\ VMs/SingularWS/SingularWS.vdi
+
+   So, if you want to create a .zip file of the .vdi, you should enter the following:
+
+   $ cd $HOME/Virtual\ VMs/SingularWS
+   $ zip SingularWS.zip SingularWS.vdi
+
+   Of course you may use a different name for the .zip file to distinguish
+   between different versions.
 
 
 3. Using SingularWS
