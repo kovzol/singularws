@@ -177,7 +177,7 @@ k) Updating Linux packages, and cleaning:
 
    # apt-get update; apt-get upgrade
    # apt-get autoremove; apt-get clean
-   # cd /var/www/cache; find /var/www/cache -maxdepth 1 | xargs rm -fR
+   # cd /var/www/cache; find . -maxdepth 1 | xargs rm -fR
    # cd /tmp; find . -maxdepth 1 | xargs rm -fR
    # rm /etc/udev/rules.d/70-persistent-net.rules
    # rm /home/singularws/*Singular*
