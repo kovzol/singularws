@@ -200,6 +200,22 @@ m) The .vdi file for the appliance will be put into
    Of course you may use a different name for the .zip file to distinguish
    between different versions.
 
+2.3. Updating a virtual machine
+-------------------------------
+
+Follow steps a)-c) from 2.2. first, then:
+
+d) In the Virtual Hard Disk choose "Use existing hard disk" and open the .vdi file
+   you want to update. Create the appliance.
+
+e) Log in as singularws, then do the following:
+
+   $ sudo su
+   # cd /var/www
+   # git pull
+
+f) Finally, do the same as in 2.2. k)-l).
+
 
 3. Using SingularWS
 -------------------
