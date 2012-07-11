@@ -150,12 +150,22 @@ g) Log in to the new machine from your workstation by doing the following:
    # mkdir cache
    # chmod 1777 cache
 
-h) Now you can try if SingularWS is working properly by using the following links:
+h) Now you can try if SingularWS is working properly by using the following links
+   on your workstation:
 
    http://127.0.0.1:8080
    http://127.0.0.1:8080/?c=s&p=12345*54321;
 
-i) Set up Varnish.
+i) Set up Varnish (optional):
+
+   # cd /etc/apache2
+   # sed -i s/80/8080/g ports.conf sites-enabled/default
+   # sed -i s/"\(^DAEMON\_OPTS=\"-a \)\(:6081\)"/"\1:80"/g /etc/default/varnish
+   # service varnish restart
+   # service apache2 restart
+
+   Retry step h) to check if everything works properly.
+
 
 3. Using SingularWS
 -------------------
