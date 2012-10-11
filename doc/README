@@ -28,7 +28,7 @@ License: GPL3
 ---------------------------
 
 Since requests can be the same for different uses in many situations
-(e.g. classroom use with several users, repeatition of a set of
+(e.g. classroom use with several users, repetition of a set of
 problems), it is considerable to use a caching mechanism in front of the
 web server. There are several ways to solve this, e.g. the mod_cache and
 mod_disk_cache modules in Apache, or the Varnish accelerator. Due to its
@@ -50,7 +50,7 @@ stability, we recommend to use Varnish with the following settings:
 Many people just want to use SingularWS, but not to play with the
 installation and configuration details. To ease their life, the GeoGebra
 Team provides a VirtualBox virtual appliance to download at
-http://geogebra2.idm.jku.at. After downloading it (that is a zipped .vdi
+http://ggb1.idm.jku.at. After downloading it (that is a zipped .vdi
 file), please start VirtualBox and load the appliance file, then start
 the virtual machine. You can learn more on this here:
 http://hacktolive.org/wiki/Using_VirtualBox_images_(.vdi_files) --- for
@@ -87,10 +87,7 @@ network administrator.
 A demo virtual server can (hopefully) always be available at the
 following URL:
 
-http://geogebra2.idm.jku.at:8085
-
-(Here 8085 is a special port we use at GeoGebra. For your virtual machine
-it must not be entered, since the default port 80 will be used.)
+http://singularws.idm.jku.at
 
 2.2. Creating a virtual machine
 -------------------------------
@@ -227,10 +224,10 @@ parameters as needed.
 
 Here are some simple examples:
 
-* http://geogebra2.idm.jku.at:8085/?c=t
-* http://geogebra2.idm.jku.at:8085/?c=s&p=12345*54321;
-* http://geogebra2.idm.jku.at:8085/?c=s&p=123-45;67%2B8;
-* http://geogebra2.idm.jku.at:8085/?c=s&p=ring%20r=0,(x,y),dp;ideal%20I=x^2,x;groebner(I);
+* http://singularws.idm.jku.at/?c=t
+* http://singularws.idm.jku.at/?c=s&p=12345*54321;
+* http://singularws.idm.jku.at/?c=s&p=123-45;67%2B8;
+* http://singularws.idm.jku.at/?c=s&p=ring%20r=0,(x,y),dp;ideal%20I=x^2,x;groebner(I);
 
 The first example is a simple connection test, it should return "ok".
 The second one simply multiplies two numbers---note the semicolon at the
@@ -288,7 +285,7 @@ http://dev.geogebra.org/trac/browser/trunk/geogebra/common/src/geogebra/common/c
 4. Official webpage and news
 ----------------------------
 
-Please check http://geogebra2.idm.jku.at for the newest version of this
+Please check http://ggb1.idm.jku.at for the newest version of this
 software.
 
 
