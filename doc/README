@@ -115,7 +115,7 @@ f) After the first reboot, log in and ask the IP address of the machine
 
 g) Log in to the new machine from your workstation by doing the following:
 
-   $ ssh -p2222 singularws@10.0.2.15
+   $ ssh -p2222 singularws@127.0.0.1
 
    After a successful login:
 
