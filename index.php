@@ -3,7 +3,7 @@
 # in ideal theory and commutative algebra
 #
 # Copyright (C) 2012 Zoltan Kovacs <zoltan@geogebra.org>
-# Version 1 (2012-02-24)
+# Version 3 (2014-01-03)
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

@@ -19,16 +19,23 @@ function test() {
 # Direct Singular call.
 # Example: http://$IP/?c=s&123-56;
 function singular_direct() {
- global $_GET, $_POST, $TIMEOUT;
+ global $_GET, $_POST, $TIMEOUT, $SILENT;
  $problem=$_GET['p'];
+ $cache=$_GET['l'];
  if (!$problem)
   $problem=$_POST['p'];
- $dirname=time().rand(10000000,99999999); // FIXME: for being collision-safe
+ if (!$cache)
+  $cache=$_POST['l'];
+ $dirname=sha1($problem);
+ if ($cache && file_exists("cache/$dirname")) {
+  echo file_get_contents("cache/$dirname/output");
+  return;
+  }
  mkdir("cache/$dirname");
  $f=fopen("cache/$dirname/input","w");
  fwrite($f,$problem);
  fclose($f);
- passthru("cat cache/$dirname/input | /usr/bin/timeout $TIMEOUT Singular -q > cache/$dirname/output 2> cache/$dirname/error");
+ passthru("cat cache/$dirname/input | /usr/bin/timeout $TIMEOUT Singular $SILENT > cache/$dirname/output 2> cache/$dirname/error");
  echo file_get_contents("cache/$dirname/output");
  }
 
