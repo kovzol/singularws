@@ -156,7 +156,7 @@ i) Ensure that the cache will be deleted regularly by starting "crontab -e",
 
    and save the file.
 
-j) Updating Linux packages, and cleaning:
+j) Updating Linux packages, and cleaning, also shrinking the .vdi file:
 
    # apt-get update; apt-get upgrade
    # apt-get autoremove; apt-get clean
@@ -165,6 +165,8 @@ j) Updating Linux packages, and cleaning:
    # rm /etc/udev/rules.d/70-persistent-net.rules
    # rm /home/singularws/*Singular*
    # cd /var/log; find . -maxdepth 1 -not -name apache2 | xargs rm -fR
+   # dd if=/dev/zero of=/bigemptyfile bs=4096k
+   # rm /bigemptyfile
    # rm ~/.bash_history; exit
    $ rm ~/.bash_history; exit
 
