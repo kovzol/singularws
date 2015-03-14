@@ -136,7 +136,7 @@ g) Log in to the new machine from your workstation by doing the following:
    Then:
 
    # cd /var
-   # git clone https://code.google.com/p/singularws/
+   # git clone https://github.com/kovzol/singularws.git
    # mv www www.orig
    # ln -s singularws/ www
    # cd www
