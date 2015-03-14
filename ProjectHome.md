@@ -1,0 +1,1 @@
+singularws is a set of PHP scripts that offer the Singular computer algebra system as a web service for outsourcing problems in commutative algebra
